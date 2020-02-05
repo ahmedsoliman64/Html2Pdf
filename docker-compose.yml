@@ -1,0 +1,11 @@
+version: '2'
+services:
+  php:
+    container_name: Html2Pdf
+    image: gotechnies/php-5.6-alpine
+    volumes:
+      - ~/.composer-docker/cache:/root/.composer/cache:delegated
+      - ./:/var/www/html:delegated
+    ports:
+      - '8155:80'
+    restart: always
