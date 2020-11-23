@@ -44,7 +44,8 @@ class DefaultController extends Controller
     }
 
     public function actionPdf() {
-
+        set_time_limit(0);
+        
         $content = Yii::$app->getRequest()->getRawBody();
         $inlineCss = Yii::$app->getRequest()->getHeaders()->get('inline-css', '');
 
