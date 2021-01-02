@@ -28,7 +28,8 @@ class DefaultController extends Controller
         return array_merge(
             parent::verbs(),
             [
-                'html2pdf' => ['POST']
+                'html2pdf'  => ['POST'],
+                'ping'      => ['get']
             ]
         );
     }
@@ -43,11 +44,21 @@ class DefaultController extends Controller
         return $this->render('index');
     }
 
+    public function actionPing() {
+        return date('Y-m-d H:i:s', strtotime('now'));
+    }
+
+    /**
+     * @endpoint /html2pdf
+     * @method POST
+     *
+     */
     public function actionPdf() {
         set_time_limit(0);
         
         $content = Yii::$app->getRequest()->getRawBody();
         $inlineCss = Yii::$app->getRequest()->getHeaders()->get('inline-css', '');
+        $portrait = Yii::$app->getRequest()->getHeaders()->get('portrait', 'true');
 
         if (!empty($inlineCss)) {
             $inlineCss = base64_decode($inlineCss);
@@ -60,7 +71,7 @@ class DefaultController extends Controller
             // A4 paper format
             'format' => Pdf::FORMAT_A4,
             // portrait orientation
-            'orientation' => Pdf::ORIENT_PORTRAIT,
+            'orientation' => $portrait === 'false' ? Pdf::ORIENT_LANDSCAPE : Pdf::ORIENT_PORTRAIT,
             // stream to browser inline
             'destination' => Pdf::DEST_BROWSER,
             // output file
@@ -77,7 +88,7 @@ class DefaultController extends Controller
             // call mPDF methods on the fly
             'methods' => [
                 'SetHeader'=>[''],
-                'SetFooter'=>['{PAGENO}'],
+                'SetFooter'=>['{PAGENO} / {nb}'],
             ]
         ]);
 

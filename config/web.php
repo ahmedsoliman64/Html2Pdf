@@ -37,7 +37,8 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                ['pattern'=>'/html2pdf', 'route'=>'default/pdf'],
+                ['pattern'=>'/html2pdf',    'route'=>'default/pdf'],
+                ['pattern'=>'/ping',        'route'=>'default/ping'],
             ],
         ],
 

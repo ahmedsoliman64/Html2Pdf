@@ -3,6 +3,8 @@
     <br>
 </p>
 
+This service is based on Yii2 PHP Framework and using mPDF library to generate the pdf 
+
 REQUIREMENTS
 ------------
 
