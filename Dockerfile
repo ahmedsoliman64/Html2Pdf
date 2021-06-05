@@ -17,6 +17,10 @@ RUN mkdir -p /run/apache2
 
 RUN cd /var/www/html
 
+RUN mkdir -p runtime/cache
+
+RUN chmod 777 runtime/cache
+
 CMD bash -c "composer install"
 
 CMD /usr/sbin/apachectl  -D   FOREGROUND
