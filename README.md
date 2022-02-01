@@ -11,11 +11,6 @@ REQUIREMENTS
 The minimum requirement by this project template that your Web server supports PHP 5.6.0.
 
 ### Install with Docker
-
-Update your vendor packages
-
-    docker-compose run --rm php composer update --prefer-dist
-    
 Run the installation triggers (creating cookie validation code)
 
     docker-compose run --rm php composer install    
