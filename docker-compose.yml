@@ -1,11 +1,9 @@
 version: '2'
 services:
   php:
-    container_name: Html2Pdf
-    image: gotechnies/php-5.6-alpine
+    image: yiisoftware/yii2-php:5.6-apache
     volumes:
       - ~/.composer-docker/cache:/root/.composer/cache:delegated
-      - ./:/var/www/html:delegated
+      - ./:/app:delegated
     ports:
       - '8155:80'
-    restart: always
