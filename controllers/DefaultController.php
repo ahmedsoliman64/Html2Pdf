@@ -64,6 +64,10 @@ class DefaultController extends Controller
             $inlineCss = base64_decode($inlineCss);
         }
 
+        // Override fonts settings and include new fonts
+        $mpdfConfigPath = __DIR__ . '/../config/mpdf/';
+        define('_MPDF_PATH', $mpdfConfigPath);
+
         // setup kartik\mpdf\Pdf component
         $pdf = new Pdf([
             // set to use core fonts only
@@ -91,6 +95,9 @@ class DefaultController extends Controller
                 'SetFooter'=>['{PAGENO} / {nb}'],
             ]
         ]);
+
+        $pdf->getApi()->text_input_as_HTML = true;
+        $pdf->getApi()->autoScriptToLang = true;
 
         $pdf->render();
     }
