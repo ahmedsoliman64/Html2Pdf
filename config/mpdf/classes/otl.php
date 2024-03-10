@@ -4526,7 +4526,7 @@ class otl
 			// throw new MpdfException("This font [" . $this->fontkey . "] contains MarkGlyphSets - Not tested yet");
 			// Change also in ttfontsuni.php
 			if ($MarkFilteringSet == '')
-				throw new MpdfException("This font [" . $this->fontkey . "] contains MarkGlyphSets - but MarkFilteringSet not set");
+				// throw new MpdfException("This font [" . $this->fontkey . "] contains MarkGlyphSets - but MarkFilteringSet not set");
 			$str = $this->MarkGlyphSets[$MarkFilteringSet];
 		}
 
