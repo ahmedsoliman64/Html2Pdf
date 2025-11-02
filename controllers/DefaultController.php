@@ -59,6 +59,7 @@ class DefaultController extends Controller
         $content = Yii::$app->getRequest()->getRawBody();
         $inlineCss = Yii::$app->getRequest()->getHeaders()->get('inline-css', '');
         $portrait = Yii::$app->getRequest()->getHeaders()->get('portrait', 'true');
+        $format = Yii::$app->getRequest()->getHeaders()->get('format', 'A4');
 
         if (!empty($inlineCss)) {
             $inlineCss = base64_decode($inlineCss);
@@ -72,8 +73,8 @@ class DefaultController extends Controller
         $pdf = new Pdf([
             // set to use core fonts only
             'mode' => Pdf::MODE_UTF8,
-            // A4 paper format
-            'format' => Pdf::FORMAT_A4,
+            // dynamic paper format (A4 default, A5 supported)
+            'format' => $format === 'A5' ? 'A5' : Pdf::FORMAT_A4,
             // portrait orientation
             'orientation' => $portrait === 'false' ? Pdf::ORIENT_LANDSCAPE : Pdf::ORIENT_PORTRAIT,
             // stream to browser inline
