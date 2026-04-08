@@ -21,4 +21,4 @@ VOLUME ./:/app:delegated
 COPY . /app
 COPY --from=vendor /tmp/vendor/ /app/vendor/
 
-CMD bash -c "composer install && php yii serve/index"
+CMD bash -c "composer install && php yii serve/index 0.0.0.0 --port=80"

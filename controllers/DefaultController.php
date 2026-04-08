@@ -55,6 +55,7 @@ class DefaultController extends Controller
      */
     public function actionPdf() {
         set_time_limit(0);
+        ini_set('memory_limit', '-1');
         
         $content = Yii::$app->getRequest()->getRawBody();
         $inlineCss = Yii::$app->getRequest()->getHeaders()->get('inline-css', '');
@@ -100,5 +101,6 @@ class DefaultController extends Controller
         $pdf->getApi()->autoScriptToLang = true;
 
         $pdf->render();
+        exit(0);
     }
 }
